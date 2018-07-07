@@ -1,0 +1,62 @@
+<form class="lista-form">
+  <table class="table table-sm table-hover">
+      <tr *ngFor="let cliente of clientes; let i = index">
+            <td>Nome: {{cliente.Nome | uppercase}}</td>
+            <td>Cpf: {{cliente.Cpf}}</td>
+            <td>
+              <a class="btn" (click)="showForEdit(cliente)">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a class="btn text-danger" (click)="onDelete(cliente.ClienteID)">
+                <i class="fa fa-trash-o"></i>
+            </a>
+            <button id="btnAbrirModal" (click)="showCliente(i)" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detalhesModal">Detalhes</button>
+          </td>          
+      </tr>
+  </table>
+</form>
+<!--MODAL-->
+<div class="modal fade" id="detalhesModal" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg"> 
+        <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Detalhes do cliente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="Nome">Nome</label>
+                    <input class="form-control" name="Nome" #Nome="ngModel" [(ngModel)]="clienteSelecionado.Nome" disabled> 
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="Cpf">Cpf</label>
+                      <input class="form-control" name="Cpf" #Cpf="ngModel" [(ngModel)]="clienteSelecionado.Cpf" disabled>                             
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="Rg">Rg</label>
+                      <input class="form-control" name="Rg" #Rg="ngModel" [(ngModel)]="clienteSelecionado.Rg" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="Telefone">Telefone</label>
+                        <input class="form-control" name="Telefone" #Telefone="ngModel" [(ngModel)]="clienteSelecionado.Telefone" disabled>                                
+                    </div>
+                </div> 
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="DataNascimento">Data de nascimento</label>
+                      <input class="form-control" name="DataNascimento" #DataNascimento="ngModel" [(ngModel)]="clienteSelecionado.DataNascimento" disabled>                                
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="DataCadastro">Cadastrado em</label>
+                      <input class="form-control" name="DataCadastro" #DataCadastro="ngModel" [(ngModel)]="clienteSelecionado.DataCadastro" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal">Fechar</button>             
+            </div>
+        </div>
+    </div>
+</div>     
+<!--FIM-MODAL-->
+

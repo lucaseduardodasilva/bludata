@@ -1,0 +1,33 @@
+form.cli-form{
+    background-color: #dbdbdb;
+    border-radius: 4px;
+    padding: 10px;
+}
+div.validation-error{
+    color: red;
+    text-align: center;
+}
+button:hover, a.btn:hover{
+    cursor: pointer;
+}
+form.lista-form{
+    background-color: #dbdbdb;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+label {
+    color: #051c36;
+    font-size: 80%;
+    width: 150px;
+    margin-bottom: 1px;
+    cursor: pointer
+  }
+
+  h1.logo{
+    display:block;
+    width: 300px;
+    height: 200px;
+    background: url(http://www.bludata.com.br/wp-content/uploads/2017/05/nova-sede-motagem.png) no-repeat;
+    width: 100%; height: 200px;
+  }

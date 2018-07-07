@@ -1,0 +1,72 @@
+<form class="cli-form" #clienteForm="ngForm" (ngSubmit)="onSubmit(clienteForm)">
+    <input type="hidden" name="ClienteID" #ClienteID="ngModel" [(ngModel)]="clienteService.clienteSelecionado.ClienteID">
+      <div class="form-group">
+          <label for="Nome">Nome</label>
+          <input class="form-control" 
+            name="Nome" #Nome="ngModel" 
+            [(ngModel)]="clienteService.clienteSelecionado.Nome" 
+            placeholder="Nome completo" 
+            minlength="3"
+            maxlength="50"
+            required> 
+          <div class="validation-error" *ngIf="Nome.invalid && Nome.touched">Você deve preencher seu nome!</div>
+      </div>
+
+      <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="Cpf">Cpf</label>
+            <input class="form-control" name="Cpf" 
+            #Cpf="ngModel"      
+            [(ngModel)]="clienteService.clienteSelecionado.Cpf" 
+            placeholder="Cpf" 
+            mask="999.999.999-99"
+            required>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="Rg">Rg</label>
+            <input class="form-control"
+            name="Rg" 
+            #Rg="ngModel"
+            mask="99.999.999-9"
+            [(ngModel)]="clienteService.clienteSelecionado.Rg" 
+            placeholder="Rg">
+          </div>
+          <div class="form-group col-md-4">
+              <label for="Telefone">Telefone</label>
+              <input class="form-control" 
+              name="Telefone"
+              #Telefone="ngModel" 
+              mask="(99) 9999-9999"
+              [(ngModel)]="clienteService.clienteSelecionado.Telefone" 
+              placeholder="Telefone para contato" required>
+              <div class="validation-error" *ngIf="Telefone.invalid && Telefone.touched">Você deve preencher o telefone!</div>
+          </div>
+      </div> 
+
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="DataNascimento">Data de nascimento</label>
+            <input class="form-control" 
+            name="DataNascimento" 
+            #DataNascimento="ngModel" [(ngModel)]="clienteService.clienteSelecionado.DataNascimento" 
+            mask="99/99/9999"
+            placeholder="Data de nascimento" 
+            required> 
+            <div class="validation-error" *ngIf="DataNascimento.invalid && DataNascimento.touched">Você deve preencher a data de nascimento!</div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="DataCadastro">Data de cadastro</label>
+            <input class="form-control" name="DataCadastro" #DataCadastro="ngModel" [(ngModel)]="clienteService.clienteSelecionado.DataCadastro" placeholder="Data de cadastro" disabled>
+          </div>
+      </div>
+
+      <!--Botoes do form-->
+      <div class="form-row">
+          <div class="form-group col-md-8">
+              <button [disabled]="!clienteForm.valid" type="submit" class="btn btn-lg btn-block btn-info"><i class="fa fa-floppy-o"></i> Salvar cadastro</button>
+          </div>
+          <div class="form-group col-md-4">
+            <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(clienteForm)"><i class="fa fa-repeat"></i> Limpar</button>
+          </div>
+      </div>
+</form>
