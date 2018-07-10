@@ -11,8 +11,23 @@ import { Cliente } from '../shared/cliente.model'
 export class ClienteListComponent implements OnInit {
   clienteSelecionado: Cliente = new Cliente();
   clientes: Cliente[] = [];
+  public telefoneMascara = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  public celularMascara =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  
 
   constructor(public clientService : ClienteService) { }
+
+  mascara(): any {
+    return {
+      mask: (value) => {
+        if (value.length < 15) 
+          return this.telefoneMascara;    
+        else
+          return this.celularMascara;  
+      },
+      guide: false
+    };      
+  }
 
   ngOnInit() {
     this.clientService.getClienteList()

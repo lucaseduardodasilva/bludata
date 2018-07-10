@@ -35,10 +35,11 @@
 
           <div class="form-group col-md-4">
               <label for="Telefone">Telefone</label>
-              <input class="form-control" 
+              <input type="text" class="form-control" 
               name="Telefone"
               #Telefone="ngModel" 
-              mask="(99) 99999-9999"
+              maxlength="25"
+              [textMask]="mascara()"
               [(ngModel)]="clienteService.clienteSelecionado.Telefone" required>
               <div class="validation-error" *ngIf="Telefone.invalid && Telefone.touched">Informe o telefone.</div>
           </div>
@@ -88,6 +89,3 @@
       </div>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>

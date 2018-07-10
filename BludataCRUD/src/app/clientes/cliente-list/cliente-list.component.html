@@ -43,7 +43,7 @@
 
                     <div class="form-group col-md-4">
                         <label for="Telefone">Telefone</label>
-                        <input class="form-control" name="Telefone" #Telefone="ngModel" [(ngModel)]="clienteSelecionado.Telefone" mask="(99) 99999-9999" disabled>                                
+                        <input class="form-control" name="Telefone" #Telefone="ngModel" [(ngModel)]="clienteSelecionado.Telefone" [textMask]="mascara()" disabled>                                
                     </div>
                 </div> 
 

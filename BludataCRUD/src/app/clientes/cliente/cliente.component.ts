@@ -13,12 +13,27 @@ import { Estado } from '../shared/estado.model'
 })
 export class ClienteComponent implements OnInit {
   estados: Estado[] = [];
+  public telefoneMascara = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  public celularMascara =  ['(', /[1-9]/, /\d/, ')', ' ', /\d/, ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+  
 
 public nomeValido: boolean
 
   constructor(public clienteService : ClienteService) {
 
    }
+
+  mascara(): any {
+    return {
+      mask: (value) => {
+        if (value.length < 15) 
+        return this.telefoneMascara;    
+        else
+        return this.celularMascara;  
+      },
+      guide: false
+    };      
+  }
 
   ngOnInit() {
     this.resetForm();
