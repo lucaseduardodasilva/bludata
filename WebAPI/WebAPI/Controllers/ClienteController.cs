@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using WebAPI.Models;
 using System.Web.Http.Cors;
 using Newtonsoft.Json;
+using WebAPI.Validations;
 
 namespace WebAPI.Controllers
 {
@@ -64,26 +65,38 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult PostCliente(Cliente request)
         {
+            request.Estado = request.Estado.ToUpper();
+            request.DataCadastro = DateTime.Today;
+            var dataNascimento = request.DataNascimento;
+            var today = DateTime.Today;
+            var idade = today.Year - dataNascimento.Value.Year;
+            if (dataNascimento > today.AddYears(-idade)) idade--;
 
             try
             {
-                if (!VerificaCpfDuplicado(request.Cpf))
-                {
-                    db.Cliente.Add(request);
+                if(ValidaCpf.CpfValido(request.Cpf) == false)
+                    return Conflict();
 
-                    db.SaveChanges();
-                }
+                if (VerificaCpfDuplicado(request.Cpf))
+                    return Conflict();
+
+                if (request.Estado == "SC" && request.Rg == "")
+                    return Conflict();
+
+                if (request.Estado == "PR" && idade < 18)
+                    return Conflict();              
+
                 else
                 {
-                    return Conflict();
+                    db.Cliente.Add(request);
+                    db.SaveChanges();
                 }
-
+           
             }
             catch (DbUpdateException ex)
             {
                 return InternalServerError(ex);
             }
-
             return Ok();
         }
 

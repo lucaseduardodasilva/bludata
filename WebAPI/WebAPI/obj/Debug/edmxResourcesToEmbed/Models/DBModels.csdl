@@ -11,8 +11,17 @@
     <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DataNascimento" Type="DateTime" Precision="3" />
     <Property Name="DataCadastro" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Estado" EntityType="WebAPIDBModel.Estado" />
   </EntityContainer>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="EstadoId" />
+    </Key>
+    <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

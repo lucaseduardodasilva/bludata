@@ -7,4 +7,5 @@ export class Cliente {
     Telefone : string;
     DataNascimento : Date;
     DataCadastro : Date;
+    Estado : string;
 }

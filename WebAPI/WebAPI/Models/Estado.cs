@@ -12,15 +12,9 @@ namespace WebAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class Estado
     {
-        public int ClienteID { get; set; }
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public string Rg { get; set; }
-        public string Telefone { get; set; }
-        public Nullable<System.DateTime> DataNascimento { get; set; }
-        public Nullable<System.DateTime> DataCadastro { get; set; }
-        public string Estado { get; set; }
+        public int EstadoId { get; set; }
+        public string Sigla { get; set; }
     }
 }

@@ -11,6 +11,15 @@
           <ScalarProperty Name="Telefone" ColumnName="Telefone" />
           <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
           <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="WebAPIDBModel.Estado">
+        <MappingFragment StoreEntitySet="Estado">
+          <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+          <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

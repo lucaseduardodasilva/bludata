@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebAPIDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebAPIDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="ClienteID" />
@@ -16,17 +16,20 @@
           <Property Name="Telefone" Type="varchar" MaxLength="20" />
           <Property Name="DataNascimento" Type="datetime" />
           <Property Name="DataCadastro" Type="datetime" />
+          <Property Name="Estado" Type="varchar" MaxLength="2" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'WebAPIDB.dbo.Estado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Estado">
-          <Property Name="Estado" Type="varchar" MaxLength="15" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="EstadoId" />
+          </Key>
+          <Property Name="EstadoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sigla" Type="varchar" MaxLength="2" />
+        </EntityType>
         <EntityContainer Name="WebAPIDBModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebAPIDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -41,10 +44,19 @@ warning 6013: The table/view 'WebAPIDB.dbo.Estado' does not have a primary key d
           <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DataNascimento" Type="DateTime" Precision="3" />
           <Property Name="DataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Estado" EntityType="WebAPIDBModel.Estado" />
         </EntityContainer>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="EstadoId" />
+          </Key>
+          <Property Name="EstadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -61,6 +73,15 @@ warning 6013: The table/view 'WebAPIDB.dbo.Estado' does not have a primary key d
                 <ScalarProperty Name="Telefone" ColumnName="Telefone" />
                 <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
                 <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="WebAPIDBModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

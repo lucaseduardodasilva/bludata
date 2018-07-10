@@ -26,5 +26,6 @@ namespace WebAPI.Models
         }
     
         public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Estado> Estado { get; set; }
     }
 }

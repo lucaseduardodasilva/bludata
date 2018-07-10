@@ -11,13 +11,17 @@
     <Property Name="Telefone" Type="varchar" MaxLength="20" />
     <Property Name="DataNascimento" Type="datetime" />
     <Property Name="DataCadastro" Type="datetime" />
+    <Property Name="Estado" Type="varchar" MaxLength="2" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'WebAPIDB.dbo.Estado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Estado">
-          <Property Name="Estado" Type="varchar" MaxLength="15" />
-        </EntityType>-->
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="EstadoId" />
+    </Key>
+    <Property Name="EstadoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sigla" Type="varchar" MaxLength="2" />
+  </EntityType>
   <EntityContainer Name="WebAPIDBModelStoreContainer">
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cliente } from './cliente.model';
+import { Estado } from './estado.model';
 
 
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
@@ -9,8 +10,11 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ClienteService {
 
+  estadosList : Estado[];
   clienteSelecionado : Cliente;
   clienteList : Cliente[];
   constructor(public http : Http) { }
@@ -33,6 +37,11 @@ export class ClienteService {
 
   getClienteList(): Promise<Cliente[]>{
     return this.http.get('http://localhost:51826/api/GetCliente')
+    .toPromise().then(x => (JSON.parse(x.json())));
+  }
+
+  getEstados(): Promise<Estado[]>{
+    return this.http.get('http://localhost:51826/api/GetEstado')
     .toPromise().then(x => (JSON.parse(x.json())));
   }
 

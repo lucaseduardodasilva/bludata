@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../shared/cliente.service';
 import { NgForm, FormBuilder, Validators } from '@angular/forms'
 import {NgxMaskModule} from 'ngx-mask'
+import { Estado } from '../shared/estado.model'
 
 //import { ToastrService } from 'ngx-toastr'
 
@@ -11,6 +12,7 @@ import {NgxMaskModule} from 'ngx-mask'
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
+  estados: Estado[] = [];
 
 public nomeValido: boolean
 
@@ -20,6 +22,7 @@ public nomeValido: boolean
 
   ngOnInit() {
     this.resetForm();
+    this.clienteService.getEstados();
   }
   resetForm(form? : NgForm){
     if(form != null)
@@ -31,7 +34,8 @@ public nomeValido: boolean
         Rg : '',
         Telefone : '',
         DataNascimento : null,
-        DataCadastro : null
+        DataCadastro : null,
+        Estado : ''
     }
   }
 
